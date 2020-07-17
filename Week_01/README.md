@@ -21,9 +21,9 @@ Linked List实战题目
 | [25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/) |      |      |              |                |
 
 其它题目
-| 题目                                                         | 代码 | 手写 | 边讲解边手写 | 解法 |
-| ------------------------------------------------------------ | ---- | ---- | ------------ | ---- |
-| [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/) | 1    | 1    | 1            |      |
-| [*127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) | 0    |      |              |      |
-| [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/) |      |      |              |      |
+| 题目                                                         | 代码 | 手写 | 边讲解边手写 | 解法               |
+| ------------------------------------------------------------ | ---- | ---- | ------------ | ------------------ |
+| [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/) | 1    | 1    | 1            | DP、优化DP状态空间 |
+| [*127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) | 0    |      |              |                    |
+| [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/) |      |      |              | 库函数             |
 

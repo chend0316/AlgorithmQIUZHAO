@@ -14,7 +14,9 @@ class Solution:
             # 一开始这样写，然后翻车了！
             # cur, cur.next, prev = cur.next, prev, cur
 
-            # 需要这样写才对！
-            cur.next, cur, prev = prev, cur.next, cur
+            # 下面3种都正确
+            # cur.next, cur, prev = prev, cur.next, cur
+            # prev, cur.next, cur = cur, prev, cur.next
+            cur.next, prev, cur = prev, cur, cur.next
 
         return prev
