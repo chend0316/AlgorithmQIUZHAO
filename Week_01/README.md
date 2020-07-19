@@ -17,6 +17,8 @@
 
 ## week1刷题遍数记录
 
+有些题目因为精疲力尽了，所以就没做。
+
 课内实战
 | 敲代码 | 阅读别人代码 | 解法          | 题目                                                         |
 | ---- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -46,24 +48,21 @@
 | 1      |              |  | [242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/) |
 |  | | | [641. 设计循环双端队列](https://leetcode-cn.com/problems/design-circular-deque/) |
 | 1 | \*1 | | [49. 字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/) |
-|  |  | | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |
+| 1 |  | | [\*42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |
 
 课外刷题
 
-| 敲代码 | 阅读别人代码 | 解法        | 题目                                                         |
-| ------ | ------------ | ----------- | ------------------------------------------------------------ |
-| 1      | 1            | DP、DP状压  | [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/) |
-| 0      |              |             | [\*127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
-|        |              | split库函数 | [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/) |
-|        |              | DP          | [97. 交错字符串](https://leetcode-cn.com/problems/interleaving-string/) |
+| 敲代码 | 阅读别人代码 | 解法                       | 题目                                                         |
+| ------ | ------------ | -------------------------- | ------------------------------------------------------------ |
+| 1      | 1            | DP、DP状压                 | [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/) |
+| \*0    |              | 构造图、广搜、两边同时广搜 | [\*127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
+| 1      |              | split库函数                | [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/) |
 
-## Week1知识点
 
-### 双端队列
+## 双端队列
+双端队列可以理解为栈、队列的组合，所以在实际应用中可以直接使用双端队列取代栈和队列。
 
-在实际应用中直接使用双端队列取代栈、队列。
-
-[Python 3](https://docs.python.org/3/library/collections.html#collections.deque)：
+[Python 3 双端队列](https://docs.python.org/3/library/collections.html#collections.deque)的基本用法如下：
 
 ```python
 from collections import deque
@@ -73,6 +72,8 @@ deq.appendleft(0)  # [0, 2, 3]
 deq[0]
 ```
 
+[Java 8](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html) 双端队列基本用法，略。
+
 | Python双端队列 | Head                | Tail            | Value           |
 | -------------- | ------------------- | --------------- | --------------- |
 | Insert         | `appendleft(value)` | `append(value)` | -               |
@@ -80,7 +81,6 @@ deq[0]
 | Peek           | `deq[0]`            | `deq[-1]`       |                 |
 | Remove & Peek  | `popleft()`         | `pop()`         |                 |
 
-[Java 8](https://docs.oracle.com/javase/8/docs/api/java/util/Deque.html)：
 
 | Java双端队列  | Head              | Tail             | Value           |
 | ------------- | ----------------- | ---------------- | --------------- |
@@ -89,19 +89,17 @@ deq[0]
 | Peek          | `peekFirst()`     | `peekLast()`     |                 |
 | Remove & Peek | `removeFirst()`   | `removeLast()`   | -               |
 
-语言差异：
-
+Notes：
 - Python可以插入一组 Value：`deq.extendleft([1,2])`，Java 不行
+- Python可以指定 Capacity 队列最大容量，Java 不行
 
-- Python可以指定 Capacity 队列最大容量，Java不行
-
-### 优先级队列（Priority Queue）
+## 优先级队列（Priority Queue）
 
 优先级队列只是一个应用场景，不是具体的某个数据结构，可以用 Heap、BST、Treap 来实现，一般是用 Heap。
 
 而堆（Heap）又有各种实现，在[维基百科](https://en.wikipedia.org/wiki/Heap_(data_structure))中有一张表格列出了各种实现的性能对比。最常见/简单的实现是二叉堆，但二叉堆的性能也是最差的。
 
-[Python3 的 heapq](https://docs.python.org/3/library/heapq.html) 是用完全二叉堆来实现的，用的时候只需要一个数组。
+[Python3 的 heapq](https://docs.python.org/3/library/heapq.html) 是用完全二叉堆来实现的，用的时候只需要一个数组。基本用法如下。
 
 ```python
 import heapq
@@ -113,7 +111,7 @@ print(queue.pop())  # 1
 print(queue[0])  # 2
 ```
 
-[Java 的 PriorityQueue](https://docs.oracle.com/javase/10/docs/api/java/util/PriorityQueue.html) 。
+[Java 的 PriorityQueue](https://docs.oracle.com/javase/10/docs/api/java/util/PriorityQueue.html)，基本用法如下：
 
 ```java
 import java.util.PriorityQueue;
@@ -140,12 +138,5 @@ public class ProorityQueueDemo {
 
 语言差异：
 - Java 建堆的时候可以通过传入比较器实现小顶堆、大顶堆等等，而 Python 建堆的时候只能建立小顶堆
-- Python 的接口是以函数的形式提供的，没有对数据做封装，比较轻量
 - 虽然 Python 的 `nlargest()` 和 `nsmallest()` 可以传入比较器，但这两个函数比较鸡肋，只能用于离线算法不能用于在线算法
-
-### 内置库函数剖析
-
-cpython/lib/heapq.py：
-
-
 
