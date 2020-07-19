@@ -18,46 +18,44 @@
 ## week1刷题遍数记录
 
 课内实战
-| 敲代码 | 阅读别人代码 | 边讲解边手写 | 解法          | 题目                                                         |
-| ---- | ------------ | ------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1    |     |              | 暴力、双指针  | [11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/) |
-| 1    |     |              |               | [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/) |
-| 1    | 1   |              |               | [15. 三数之和](https://leetcode-cn.com/problems/3sum/)       |
-| 1    | 1   |              |                  | [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/) |
-| 1    | 1   | 1            | 递归、迭代       | [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/) |
-| 1    | 1   |              | 哈希表、快慢指针 | [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) |
-| 1    | \*2 |              | 哈希表、\*快慢指针 | [\*142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/) |
-|      |      |              |                  | [25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/) |
-| 1    | 2   |              |      | [20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/) |
-| 2    |     |              |      | [155. 最小栈](https://leetcode-cn.com/problems/min-stack/)   |
-| 1    | \*3 |              |      | [\*84. 柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/) |
-| 1    | 2   |              |      | [\*239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/) |
-|      |      |              |      | [641. 设计循环双端队列](https://leetcode-cn.com/problems/design-circular-deque/) |
-|      |      |              |      | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |
+| 敲代码 | 阅读别人代码 | 解法          | 题目                                                         |
+| ---- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
+| 2   |     | 暴力、双指针  | [11. 盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/) |
+| 2    |     |               | [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/) |
+| 2    | 1   |               | [15. 三数之和](https://leetcode-cn.com/problems/3sum/)       |
+| 2    | 1   |                  | [206. 反转链表](https://leetcode-cn.com/problems/reverse-linked-list/) |
+| 2    | 1   | 递归、迭代       | [24. 两两交换链表中的节点](https://leetcode-cn.com/problems/swap-nodes-in-pairs/) |
+| 2    | 1   | 哈希表、快慢指针 | [141. 环形链表](https://leetcode-cn.com/problems/linked-list-cycle/) |
+| 1    | \*2 | 哈希表、\*快慢指针 | [\*142. 环形链表 II](https://leetcode-cn.com/problems/linked-list-cycle-ii/) |
+| 1 | \*1 |                  | [25. K 个一组翻转链表](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/) |
+| 2   | 2   |      | [20. 有效的括号](https://leetcode-cn.com/problems/valid-parentheses/) |
+| 2    |     |      | [155. 最小栈](https://leetcode-cn.com/problems/min-stack/)   |
+| 1    | \*3 |      | [\*84. 柱状图中最大的矩形](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/) |
+| 1    | 2   |      | [\*239. 滑动窗口最大值](https://leetcode-cn.com/problems/sliding-window-maximum/) |
 
 课后作业
-| 敲代码 | 阅读别人代码 | 边讲解边手写 | 解法                 | 题目                                                         |
-| ------ | ------------ | ------------ | -------------------- | ------------------------------------------------------------ |
-| 1      |              |              |                      | [26. 删除排序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/) |
-| 1      |              |              |                      | [189. 旋转数组](https://leetcode-cn.com/problems/rotate-array/) |
-| 1      |              |              |                      | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) |
-| 1      | 1            |              | 就地合并、开额外空间 | [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) |
-| 1      |              |              |               | [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     |
-| 2      | 1            | 1            | 末尾补0、交换 | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |
-| 1      |              |              |  | [66. 加一](https://leetcode-cn.com/problems/plus-one/) |
-| 1      |              |              |  | [242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/) |
-|  | | | | [641. 设计循环双端队列](https://leetcode-cn.com/problems/design-circular-deque/) |
-| 1 | \*1 | | | [49. 字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/) |
-|  |  | | | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |
+| 敲代码 | 阅读别人代码 | 解法                 | 题目                                                         |
+| ------ | ------------ | -------------------- | ------------------------------------------------------------ |
+| 2     |              |                      | [26. 删除排序数组中的重复项](https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/) |
+| 1      |              |                      | [189. 旋转数组](https://leetcode-cn.com/problems/rotate-array/) |
+| 1      |              |                      | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) |
+| 1      | 1            | 就地合并、开额外空间 | [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) |
+| 1      |              |               | [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     |
+| 2      | 1            | 末尾补0、交换 | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |
+| 1      |              |  | [66. 加一](https://leetcode-cn.com/problems/plus-one/) |
+| 1      |              |  | [242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/) |
+|  | | | [641. 设计循环双端队列](https://leetcode-cn.com/problems/design-circular-deque/) |
+| 1 | \*1 | | [49. 字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/) |
+|  |  | | [42. 接雨水](https://leetcode-cn.com/problems/trapping-rain-water/) |
 
 课外刷题
 
-| 敲代码 | 阅读别人代码 | 边讲解边手写 | 解法        | 题目                                                         |
-| ------ | ------------ | ------------ | ----------- | ------------------------------------------------------------ |
-| 1      | 1            | 1            | DP、DP状压  | [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/) |
-| 0      |              |              |             | [\*127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
-|        |              |              | split库函数 | [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/) |
-|        |              |              | DP          | [97. 交错字符串](https://leetcode-cn.com/problems/interleaving-string/) |
+| 敲代码 | 阅读别人代码 | 解法        | 题目                                                         |
+| ------ | ------------ | ----------- | ------------------------------------------------------------ |
+| 1      | 1            | DP、DP状压  | [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/) |
+| 0      |              |             | [\*127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
+|        |              | split库函数 | [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/) |
+|        |              | DP          | [97. 交错字符串](https://leetcode-cn.com/problems/interleaving-string/) |
 
 ## Week1知识点
 

@@ -49,3 +49,19 @@ class Solution:
             if c not in map: stack.append(c)
             elif stack.pop() != map[c]: return False
         return len(stack) == 1
+
+# 第二遍
+class Solution:
+    def isValid(self, s: str) -> bool:
+        stack = ['#']
+        for c in s:
+            if c == '(':
+                stack.append(')')
+            elif c == '[':
+                stack.append(']')
+            elif c == '{':
+                stack.append('}')
+            else:
+                if stack.pop() != c:
+                    return False
+        return len(stack) == 1

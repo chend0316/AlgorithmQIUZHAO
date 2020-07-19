@@ -21,3 +21,16 @@ class Solution:
         return False
 
 # 参考国际站，代码简洁度差不多，不需要改进
+
+# 第二遍代码
+class Solution:
+    def hasCycle(self, head: ListNode) -> bool:
+        if not head: return False
+        slow, fast = head, head.next
+
+        while fast and fast.next:
+            if fast == slow: return True
+            slow = slow.next
+            fast = fast.next.next
+
+        return False

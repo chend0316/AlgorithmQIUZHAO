@@ -1,9 +1,4 @@
-# Definition for singly-linked list.
-# class ListNode:
-#     def __init__(self, x):
-#         self.val = x
-#         self.next = None
-
+# 第一遍
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
         # if not head: return None
@@ -20,3 +15,11 @@ class Solution:
             cur.next, prev, cur = prev, cur, cur.next
 
         return prev
+
+# 第二遍
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        p, pre = head, None
+        while p:
+            p.next, pre, p = pre, p, p.next
+        return pre

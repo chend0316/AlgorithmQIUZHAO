@@ -1,3 +1,4 @@
+# 第一遍
 class Solution:
     def maxArea(self, height: List[int]) -> int:
         i, j = 0, len(height) - 1
@@ -13,3 +14,6 @@ class Solution:
         return res
 
 # 然后Python没有++操作符，所以代码反而比Java长一些
+
+
+# 第二遍写的代码跟第一遍一模一样。。。这里就不贴上来了
