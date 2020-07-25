@@ -46,3 +46,20 @@ class Solution:
             if i >= k - 1:
                 res.append(nums[deq[0]])
         return res
+
+# 第二遍
+# 一开始犯了个错：双端队列应该放下标，不是值，但很快改正过来了
+# 这个错其实第一遍刷的时候也犯了
+# 我第二遍和第一遍的代码差不多。
+class Solution:
+    def maxSlidingWindow(self, nums: List[int], k: int) -> List[int]:
+        deq = collections.deque()
+        ret = []
+        for i in range(len(nums)):
+            while deq and nums[deq[-1]] <= nums[i]:
+                deq.pop()
+            deq.append(i)
+            if deq[0] == i - k: deq.popleft()
+            if i >= k - 1:
+                ret.append(nums[deq[0]])
+        return ret
