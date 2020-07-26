@@ -63,13 +63,19 @@
 
 ## week2刷题遍数记录
 课内实战
-| 敲代码 | 阅读别人代码 | 解法          | 题目                                                         |
+| 敲代码 | 阅读别人代码 | 备注    | 题目                                                         |
 | ---- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| 1 | \*1 |      | [剑指 Offer 40. 最小的k个数](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/) |
+| 1 | \*1 | 多复习题解 | [剑指 Offer 40. 最小的k个数](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/) |
 | 这题重复 | - | - | 239. 滑动窗口最大值 |
+| 这题重复 | - | - | 70. 爬楼梯 |
+| 1 | 1 | 多复习 | [22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/) |
+| 1 |  | 软柿子 | [226. 翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/) |
+| 1 |  | 软柿子 | [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/) |
+| 1 | 1 | 多复习 | [111. 二叉树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/) |
+|  |  |  | [297. 二叉树的序列化与反序列化](https://leetcode-cn.com/problems/serialize-and-deserialize-binary-tree/) |
 
 课后作业
-| 敲代码 | 阅读别人代码 | 解法                 | 题目                                                         |
+| 敲代码 | 阅读别人代码 | 备注               | 题目                                                         |
 | ------ | ------------ | -------------------- | ------------------------------------------------------------ |
 | 1 |    |      | [590. N叉树的后序遍历](https://leetcode-cn.com/problems/n-ary-tree-postorder-traversal/) |
 | 1 | | | [589. N叉树的前序遍历](https://leetcode-cn.com/problems/n-ary-tree-preorder-traversal/) |
@@ -79,10 +85,10 @@
 | 1 | 2 | 堆、3指针DP | [\*剑指 Offer 49. 丑数](https://leetcode-cn.com/problems/chou-shu-lcof/)、[\*264. 丑数 II](https://leetcode-cn.com/problems/ugly-number-ii/) |
 | 1 | | | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |
 | 1 | 2 | | [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/) |
-| | | | [105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) |
-| | | | [77. 组合](https://leetcode-cn.com/problems/combinations/) |
-| | | | [46. 全排列](https://leetcode-cn.com/problems/permutations/) |
-| | | | [47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/) |
+| 1 | 1 | | [105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) |
+| 1 | | | [77. 组合](https://leetcode-cn.com/problems/combinations/) |
+| 1 | | | [46. 全排列](https://leetcode-cn.com/problems/permutations/) |
+| 1 | | | [47. 全排列 II](https://leetcode-cn.com/problems/permutations-ii/) |
 
 课外刷题
 
@@ -197,3 +203,106 @@ class Solution:
 对于动态类型语言（如Python），可以直接在原来的结构上增加parent字段。对于静态类型语言（如C++、Java）可以单独开一个Map记录节点和其父节点的映射。
 
 代码，略。
+
+## 代码模板
+
+todo: 现在是Python语言的模板，考虑也弄些别的语言的模板？
+
+### 树
+
+DFS
+
+```python
+def dfs(node):
+  if not node: return
+  # ... node
+  if node.left: dfs(node.left)
+  if node.right: dfs(node.right)
+```
+
+BFS
+
+```python
+def bfs(node):
+	queue = collections.deque()
+  if node: queue.append(node)
+  while queue:
+    cur = queue.popleft()
+    # ... cur
+    if cur.left: queue.append(cur.left)
+    if cur.right: queue.append(cur.right)
+```
+
+层次遍历 (带有层级信息)
+
+```python
+
+```
+
+先序遍历、中序遍历、后序遍历，略。
+
+### 图
+
+DFS
+
+```python
+visited = set()
+def dfs(node):
+  if node in visited: return
+  visited.add(node)
+  process(node)  # 根据业务替换
+  for child in node.children:
+		if child not in visited:
+      dfs(child)
+```
+
+BFS will_visit
+
+```python
+def bfs(graph, start):
+    queue = collections.deque()
+    if start: queue.append(start)
+    will_visit = { start, }
+    while queue:
+        node = queue.popleft()
+        process(node)  # 根据业务替换
+        for neighbor in gen_neighbors(node):  # 根据业务替换
+        if neighbor not in will_visit:
+            queue.append(neighbor)
+            will_visit.add(neighbor)
+```
+
+BFS visited，因为 visited 比 will_visit 更新更迟钝，所以等 queue.pop 的时候才会发现重复，会浪费 queue 更多空间
+
+```python
+def bfs(graph, start):
+    queue = collections.deque()
+    if start: queue.append(start)
+    visited = set()
+    while queue:
+        node = queue.popleft()
+        if node in visited: continue  # 跳过重复节点
+        visited.add(node)
+        process(node)
+        for neighbor in gen_neighbors(node):
+        queue.append(neighbor)  # 会推入重复节点，浪费队列空间
+```
+
+BFS will_visit，按层遍历
+
+```python
+def bfs(graph, start):
+    queue = collections.deque()
+    if start: queue.append(start)
+    will_visit = { start, }
+    while queue:
+        n = len(queue)
+        while n:
+        n -= 1
+        node = queue.popleft()
+        process(node)  # 根据业务替换
+        for neighbor in gen_neighbors(node):  # 根据业务替换
+            if neighbor not in will_visit:
+            queue.append(neighbor)
+            will_visit.add(neighbor)
+```
