@@ -48,7 +48,7 @@ PS：因为会回过头刷以前的题目，所以每周的刷题记录全会列
 | 1 |              |                      | [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/) |
 | 1 | 1            | 就地合并、开额外空间 | [88. 合并两个有序数组](https://leetcode-cn.com/problems/merge-sorted-array/) |
 | 1 |              |               | [1. 两数之和](https://leetcode-cn.com/problems/two-sum/)     |
-| 2 | 1            | 末尾补0、交换 | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |
+| 2 | 1            | 末尾补0、交换、有变种 | [283. 移动零](https://leetcode-cn.com/problems/move-zeroes/) |
 | 1 |              |  | [66. 加一](https://leetcode-cn.com/problems/plus-one/) |
 | 1 |              |  | [242. 有效的字母异位词](https://leetcode-cn.com/problems/valid-anagram/) |
 |   |              | | [641. 设计循环双端队列](https://leetcode-cn.com/problems/design-circular-deque/) |
@@ -123,7 +123,7 @@ PS：因为会回过头刷以前的题目，所以每周的刷题记录全会列
 | 1      |              | 整个系列挺难的 | [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) |
 | 1      |              |                | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) |
 |        |              |                | [874. 模拟行走机器人](https://leetcode-cn.com/problems/walking-robot-simulation/) |
-|        |              |                | [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
+| 1      |              | 重点复习       | [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
 |        |              | 搜索、并查集   | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |
 |        |              |                | [529. 扫雷游戏](https://leetcode-cn.com/problems/minesweeper/) |
 | 1      |              |                | [55. 跳跃游戏](https://leetcode-cn.com/problems/jump-game/)  |
@@ -157,4 +157,5 @@ def lemonadeChange(self, bills):
 
 ### 二分查找
 
-千万不要小瞧二分查找，一定要多练多背，面试前重点准备，可能比链表还容易丢分。
+### 单词接龙
+

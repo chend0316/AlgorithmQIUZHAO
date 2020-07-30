@@ -56,12 +56,42 @@
 # 解释: endWord "cog" 不在字典中，所以无法进行转换。
 # 
 #
+from typing import *
+import collections
 
 # @lc code=start
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
-        graph = {}
+        if not beginWord or not wordList or endWord not in wordList: return 0
+        K = len(beginWord)
+        neighbors = {}
+        for word in wordList + [beginWord]:  # 没必要加 beginWord?
+            for i in range(K):
+                key = word[:i] + '*' + word[i + 1:]
+                neighbors.setdefault(key, [])
+                neighbors[key].append(word)
         
-        
-# @lc code=end
+        # bfs
+        queue = collections.deque()
+        visited = set()
+        queue.append(beginWord)
+        res = 0
+        while queue:
+            n = len(queue)
+            res += 1
+            while n:
+                n -= 1
+                word = queue.popleft()
+                visited.add(word)
+                if word == endWord: return res
+                for i in range(K):
+                    key = word[:i] + '*' + word[i + 1:]
+                    for neighbor in neighbors[key]:
+                        if neighbor not in visited:
+                            queue.append(neighbor)
+        return 0
 
+# @lc code=end
+s = Solution()
+res = s.ladderLength('hit', 'cog', ["hot","dot","dog","lot","log","cog"])
+print(res)
