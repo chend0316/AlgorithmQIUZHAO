@@ -40,17 +40,17 @@
 class Solution:
     def search(self, nums: List[int], target: int) -> int:
         if not nums: return -1
-        if len(nums) == 1 and nums[0] == target: return 0
-        if len(nums) == 1: return -1
-
-        left, right = 0, len(nums) - 1
-        while left <= right:
-            m = (left + right) // 2
-            if nums[m] == target: return m
-            elif nums[m] > nums[left] and target > nums[m]: left = m + 1
-            elif nums[m] < nums[right] and target < 
-        
-        return left if left == right else -1
+        lo, hi = 0, len(nums) - 1
+        while lo <= hi:
+            mid = (lo + hi) // 2
+            if nums[mid] == target: return mid
+            elif nums[lo] <= nums[mid]:
+                if nums[lo] <= target < nums[mid]: hi = mid - 1
+                else: lo = mid + 1
+            else:
+                if nums[mid] < target <= nums[hi]: lo = mid + 1
+                else: hi = mid - 1
+        return -1
 
 # @lc code=end
 

@@ -38,5 +38,16 @@
 # @lc code=start
 class Solution:
     def mySqrt(self, x: int) -> int:
+        if x <= 0: return 0
+        lo, hi = 1, x
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if mid * mid < x: lo = mid
+            elif x < mid * mid: hi = mid - 1
+            else: return mid
+        return lo
+
 # @lc code=end
+s = Solution()
+print(s.mySqrt(8))
 

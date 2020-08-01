@@ -21,9 +21,15 @@
 - 不要追求完美主义，做笔记不要把所有解法都记下来，只记自己目前领悟最深的就行
 - 好记性不如烂笔头，烂笔头不如谷歌；与其辛苦做所谓的大而全的笔记，不如多逛逛力扣国际站、多用谷歌搜别人的笔记总结
 
-PS：因为会回过头刷以前的题目，所以每周的刷题记录全会列在这里。
+## 每周课内遍数记录
 
-## week1刷题遍数记录
+一开始每周都有记录课外刷题，后来不记录了。
+
+因为课内题是按每周知识点划分的，课外题就比较杂乱。
+
+所以就增加了一个「刷题笔记」，刷题笔记包含了课内+课外题目，是按照知识点划分的。
+
+### week1刷题遍数记录
 课内实战
 | 敲代码 | 阅读别人代码 | 备注       | 题目                                                         |
 | ---- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -63,7 +69,7 @@ PS：因为会回过头刷以前的题目，所以每周的刷题记录全会列
 | \*0    |              | 构造邻接表、广搜、两边同时广搜 | [\*127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
 | 1      |              | split库函数                    | [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/) |
 
-## week2刷题遍数记录
+### week2刷题遍数记录
 课内实战
 | 敲代码 | 阅读别人代码 | 备注    | 题目                                                         |
 | ---- | ------------ | ------------------------------------------------------------ | ------------------------------------------------------------ |
@@ -86,7 +92,7 @@ PS：因为会回过头刷以前的题目，所以每周的刷题记录全会列
 | 1 | |  | [429. N叉树的层序遍历](https://leetcode-cn.com/problems/n-ary-tree-level-order-traversal/) |
 | 1 | 2 | 堆、3指针DP | [\*剑指 Offer 49. 丑数](https://leetcode-cn.com/problems/chou-shu-lcof/)、[\*264. 丑数 II](https://leetcode-cn.com/problems/ugly-number-ii/) |
 | 1 | | | [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/) |
-| 1 | 2 | | [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/) |
+| 2 | 2 | 多复习 | [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/) |
 | 1 | 1 | | [105. 从前序与中序遍历序列构造二叉树](https://leetcode-cn.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) |
 | 1 | | | [77. 组合](https://leetcode-cn.com/problems/combinations/) |
 | 1 | | | [46. 全排列](https://leetcode-cn.com/problems/permutations/) |
@@ -100,16 +106,16 @@ PS：因为会回过头刷以前的题目，所以每周的刷题记录全会列
 | 1 | | | [103. 二叉树的锯齿形层次遍历](https://leetcode-cn.com/problems/binary-tree-zigzag-level-order-traversal/) |
 | 1 | 1 | | [1025. 除数博弈](https://leetcode-cn.com/problems/divisor-game/) |
 
-## week3刷题遍数记录
+### week3刷题遍数记录
 
 课内实战
 | 敲代码   | 阅读别人代码 | 备注           | 题目                                                         |
 | -------- | ------------ | -------------- | ------------------------------------------------------------ |
 | 1        |              | 软柿子         | [50. Pow(x, n)](https://leetcode-cn.com/problems/powx-n/)    |
 | 1        |              | DFS、数学      | [78. 子集](https://leetcode-cn.com/problems/subsets/)        |
-| 1        |              | O(N)O(1)解法   | [169. 多数元素](https://leetcode-cn.com/problems/majority-element/) |
+| 1        |              |                | [169. 多数元素](https://leetcode-cn.com/problems/majority-element/) |
 | 1        |              | 要复习         | [17. 电话号码的字母组合](https://leetcode-cn.com/problems/letter-combinations-of-a-phone-number/) |
-| 1        | 1            | 多练、用时太久 | [51. N皇后](https://leetcode-cn.com/problems/n-queens/)      |
+| 2        | 1            | 多练、用时太久 | [51. N皇后](https://leetcode-cn.com/problems/n-queens/)      |
 | 2        |              |                | [102. 二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/) |
 | 1        |              |                | [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/) |
 | 这题重复 |              |                | 22. 括号生成                                                 |
@@ -117,27 +123,25 @@ PS：因为会回过头刷以前的题目，所以每周的刷题记录全会列
 
 课后作业
 
-| 敲代码 | 阅读别人代码 | 备注           | 题目                                                         |
-| ------ | ------------ | -------------- | ------------------------------------------------------------ |
-| 1      | 1            | 有变种吧？     | [860. 柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/) |
-| 1      |              | 整个系列挺难的 | [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) |
-| 1      |              |                | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) |
-|        |              |                | [874. 模拟行走机器人](https://leetcode-cn.com/problems/walking-robot-simulation/) |
-| 1      |              | 重点复习       | [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
-|        |              | 搜索、并查集   | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |
-|        |              |                | [529. 扫雷游戏](https://leetcode-cn.com/problems/minesweeper/) |
-| 1      |              |                | [55. 跳跃游戏](https://leetcode-cn.com/problems/jump-game/)  |
-| 0      |              | 多复习         | [\*33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) |
-|        |              |                | [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/) |
-|        |              |                | [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) |
-|        |              |                | [126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/) |
-|        |              |                | [45. 跳跃游戏 II](https://leetcode-cn.com/problems/jump-game-ii/) |
+| 敲代码 | 阅读别人代码 | 备注                         | 题目                                                         |
+| ------ | ------------ | ---------------------------- | ------------------------------------------------------------ |
+| 1      | 1            | 有变种吧？                   | [860. 柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/) |
+| 1      |              | 整个系列挺难的               | [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) |
+| 1      |              |                              | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) |
+|        |              |                              | [874. 模拟行走机器人](https://leetcode-cn.com/problems/walking-robot-simulation/) |
+| 1      |              | 重点复习                     | [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
+| 1      |              | 搜索、并查集                 | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |
+| 1      |              | 这题不复习了，题目读半天     | [529. 扫雷游戏](https://leetcode-cn.com/problems/minesweeper/) |
+| 1      |              |                              | [55. 跳跃游戏](https://leetcode-cn.com/problems/jump-game/)  |
+| 2      | 2            | 多复习，二分查找的难题       | [\*33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) |
+| 1      | 1            | 二分、从右上角开始当做搜索树 | [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/) |
+| 1      | 1            | 二分，多复习                 | [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) |
+|        |              |                              | [126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/) |
+|        |              |                              | [45. 跳跃游戏 II](https://leetcode-cn.com/problems/jump-game-ii/) |
 
 ## 刷题笔记
 
 [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/)这题输入规模比较小，相比之下[127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/)的输入规模就很大。
-
-### 柠檬水找零
 
 [860. 柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/)，题目条件特殊，贪心解决，代码也可以根据业务写死，如下。
 
@@ -154,8 +158,4 @@ def lemonadeChange(self, bills):
 ```
 
 但是此题明显会有变种，成为一个系列的题目。
-
-### 二分查找
-
-### 单词接龙
 
