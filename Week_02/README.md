@@ -295,7 +295,7 @@ def bfs(graph, start):
         visited.add(node)
         process(node)
         for neighbor in gen_neighbors(node):
-        queue.append(neighbor)  # 会推入重复节点，浪费队列空间
+            queue.append(neighbor)  # 会推入重复节点，浪费队列空间
 ```
 
 BFS will_visit，按层遍历
