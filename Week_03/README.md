@@ -167,20 +167,20 @@ def binSearch(nums, target):
 
 #### 变形1：左右区间是否包含 mid 呢？
 「不包含mid (经典)」如果左右子区间都不包含 mid，代码为：
-- `mid = (lo + hi) // 2` 可以
-- `mid = (lo + hi + 1) // 2` 也可以
+- `mid = (lo + hi) // 2` 可以用下取整
+- `mid = (lo + hi + 1) // 2` 也可以用上取整
 - `lo = mid + 1`
 - `hi = mid - 1`
 
 「右包含mid (变种)」如果右子区间包含 mid，代码为：
-- `mid = (lo + hi) // 2` 不可以，会死循环
-- `mid = (lo + hi + 1) // 2` 可以
+- `mid = (lo + hi) // 2` 不可以用下取整，会死循环
+- `mid = (lo + hi + 1) // 2` 可以用上取整
 - `lo = mid`
 - `hi = mid - 1`
 
 「左包含mid (变种)」如果左子区间包含 mid，代码为：
-- `mid = (lo + hi) // 2` 可以
-- `mid = (lo + hi + 1) // 2` 不可以，会死循环
+- `mid = (lo + hi) // 2` 可以用下取整
+- `mid = (lo + hi + 1) // 2` 不可以用上取整，会死循环
 - `lo = mid + 1`
 - `hi = mid`
 
@@ -189,6 +189,19 @@ def binSearch(nums, target):
 - `mid = (lo + hi + 1) // 2` 不可以，会死循环
 - `lo = mid + 1`
 - `hi = mid - 1`
+
+为什么会死循环呢？下面代码演示的是「右包含mid」的一个错误例子，对应题目是[69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)。如果 mid 采用下取整则可能和 lo 重合，反之采用上取整可能和 hi 重合。
+```python
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        lo, hi = 0, x
+        while lo < hi:  # 当 lo == 2 而且 hi == 3 的时候
+            mid = (lo + hi) // 2  # mid 向下取整，mid == 2
+            if mid * mid < x: lo = mid  # 这时候 lo 又回到 2！死循环！
+            elif mid * mid > x: hi = mid - 1
+            else: return mid
+        return lo
+```
 
 「不包含mid」的题目有：[367. 有效的完全平方数](https://leetcode-cn.com/problems/valid-perfect-square/)等等。
 367题的代码如下。
@@ -238,7 +251,7 @@ class Solution:
 - `while lo < hi`，区间「长度为1」的时候退出
 - `while lo < hi - 1`，区间「长度为2」的时候退出
 
-区间「长度为0」的代码，用于可能无解的题型，循环退出后就返回无解。这是最经典的题型。todo：也找个例题吧？
+区间「长度为0」的代码，用于可能无解的题型，循环退出后就返回无解。这是最经典最简单的题型。todo：也找个例题吧？
 
 区间「长度为1」的代码用于一定有解的题型，当区间长度为1的时候，解已经明确了，就可以停止循环了。
 如果你不退出循环，轻则逻辑混乱，重则死循环，请看[278. 第一个错误的版本](https://leetcode-cn.com/problems/first-bad-version/)的一个反面教材：
