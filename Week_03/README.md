@@ -49,9 +49,9 @@ class Solution:
         if root: queue.append(root)
         while queue:
             res.append([])
-            n = len(queue)
-            while n:
-                n -= 1
+            n = len(queue)  # 技巧
+            while n:  # 技巧
+                n -= 1  # 技巧
                 node = queue.popleft()
                 res[-1].append(node.val)
                 if node.left: queue.append(node.left)
@@ -68,18 +68,19 @@ class Solution:
         if root: queue.append(root)
         while queue:
             res.append([])
-            newQueue = []
+            newQueue = []  # 技巧
             for node in queue:
                 res[-1].append(node.val)
-                if node.left: newQueue.append(node.left)
-                if node.right: newQueue.append(node.right)
-            queue = newQueue
+                if node.left: newQueue.append(node.left)  # 技巧
+                if node.right: newQueue.append(node.right)  # 技巧
+            queue = newQueue  # 技巧
         return res
 ```
 
-层次遍历是一个代码技巧，熟悉其思想可以写出其它变种，例如[126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)在国际站上有[一个绝妙的解法](https://leetcode.com/problems/word-ladder-ii/discuss/40482/Python-simple-BFS-layer-by-layer)，就是将「新旧队列法」运用到了炉火纯青的地步，代码如下：
+层次遍历是一个代码技巧，熟悉其思想可以写出其它变种，例如[126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)在国际站上有[一个绝妙的解法](https://leetcode.com/problems/word-ladder-ii/discuss/40482/Python-simple-BFS-layer-by-layer)，就是将「新旧队列法」运用到了出神入化的地步，代码如下：
 
 ```python
+# 这个例子放在这边有点太难了，因为这个老外用的技巧有点多，todo：之后找个更适合新手学习的例子吧
 class Solution(object):
     def findLadders(self, beginWord, endWord, wordList):
         wordList = set(wordList)
@@ -100,7 +101,7 @@ class Solution(object):
                                 newlayer[neww]+=[j+[neww] for j in layer[w]]
 
             wordList -= set(newlayer.keys())
-            layer = newlayer  # 这也是用「新旧队列」法实现的层次遍历，当然这里是哈希表不是队列
+            layer = newlayer  # 用「新旧队列」法实现的层次遍历，不过这里用哈希表取代队列
 
         return res
 ```
@@ -165,7 +166,7 @@ def binSearch(nums, target):
 ```
 
 #### 变形1：左右区间是否包含 mid 呢？
-「不包含mid (传统)」如果左右子区间都不包含 mid，代码为：
+「不包含mid (经典)」如果左右子区间都不包含 mid，代码为：
 - `mid = (lo + hi) // 2` 可以
 - `mid = (lo + hi + 1) // 2` 也可以
 - `lo = mid + 1`
@@ -198,8 +199,8 @@ class Solution:
         lo, hi = 1, num
         while lo <= hi:
             mid = (lo + hi) // 2
-            if mid * mid < num: lo = mid + 1
-            elif mid * mid > num: hi = mid - 1
+            if mid * mid < num: lo = mid + 1  # mid 打入冷宫
+            elif mid * mid > num: hi = mid - 1  # mid 打入冷宫
             else: return True
         return False
 ```
@@ -212,7 +213,7 @@ class Solution:
         lo, hi = 0, x
         while lo < hi:
             mid = (lo + hi + 1) // 2
-            if mid * mid < x: lo = mid
+            if mid * mid < x: lo = mid  # 再给 mid 一个机会吧！
             elif mid * mid > x: hi = mid - 1
             else: return mid
         return lo
@@ -224,11 +225,9 @@ class Solution:
 class Solution:
     def firstBadVersion(self, n):
         lo, hi = 1, n
-        # 我们要保证区间内含有第一个错误版本
-        # 如果 mid 是错误版本，那么排除右区间，范围缩小到左区间，左区间包含 mid 本身
         while lo < hi:
             mid = (lo + hi) // 2
-            if isBadVersion(mid): hi = mid
+            if isBadVersion(mid): hi = mid  # 再给 mid 一个机会吧！
             else: lo = mid + 1
         return lo
 ```
@@ -239,7 +238,7 @@ class Solution:
 - `while lo < hi`，区间「长度为1」的时候退出
 - `while lo < hi - 1`，区间「长度为2」的时候退出
 
-区间「长度为0」的代码，用于可能无解的题型，循环退出后就返回无解。
+区间「长度为0」的代码，用于可能无解的题型，循环退出后就返回无解。这是最经典的题型。todo：也找个例题吧？
 
 区间「长度为1」的代码用于一定有解的题型，当区间长度为1的时候，解已经明确了，就可以停止循环了。
 如果你不退出循环，轻则逻辑混乱，重则死循环，请看[278. 第一个错误的版本](https://leetcode-cn.com/problems/first-bad-version/)的一个反面教材：
@@ -256,10 +255,10 @@ class Solution:
         return lo
 ```
 
-区间「长度为2」的代码用于保证区间长度不小于3，避免「全包含mid」出现死循环。
+区间「长度为2」的代码用于保证区间长度不小于3，避免「全包含mid」出现死循环。有没有这种题目呢？todo: 应该是有的，我找到了会贴在这边。
 
-#### 变种3：如何根据 mid 信息缩小搜索区间呢？
-这种变种就很灵活了，需要具体题目具体分析，没有一个通用的模板。
+#### 变形3：如何根据 mid 信息缩小搜索区间呢？
+这种变形就很灵活了，需要具体题目具体分析，没有一个通用的模板。
 
 二分查找变种：旋转排序数组。如果有重复元素，那么会难很多。
 - [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
@@ -272,12 +271,6 @@ class Solution:
 - [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/)，二分不是这题的最优解
 
 ## 每周课内遍数记录
-
-一开始每周都有记录课外刷题，后来不记录了。
-
-因为课内题是按每周知识点划分的，课外题就比较杂乱。
-
-所以就增加了一个「刷题笔记」，刷题笔记包含了课内+课外题目，是按照知识点划分的。
 
 ### week1刷题遍数记录
 课内实战
