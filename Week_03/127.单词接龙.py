@@ -62,6 +62,13 @@ import collections
 # @lc code=start
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+
+
+# @lc code=end
+
+# BFS
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         if not beginWord or not wordList or endWord not in wordList: return 0
         K = len(beginWord)
         neighbors = {}
@@ -91,7 +98,34 @@ class Solution:
                             queue.append(neighbor)
         return 0
 
-# @lc code=end
-s = Solution()
-res = s.ladderLength('hit', 'cog', ["hot","dot","dog","lot","log","cog"])
-print(res)
+# 双向BFS
+class Solution:
+    def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        if not wordList or endWord not in wordList: return 0
+        K = len(beginWord)
+        neighbors = {}
+        for word in wordList + [beginWord]:
+            for i in range(K):
+                w = word[:i] + '*' + word[i + 1:]
+                neighbors.setdefault(w, [])
+                neighbors[w].append(word)
+
+        beginSet = {beginWord,}
+        endSet = {endWord,}
+        res = 1
+        visited = set()
+        while beginSet and endSet:
+            if len(beginSet) > len(endSet): beginSet, endSet = endSet, beginSet
+            tmpSet = set()
+            for word in beginSet:
+                if word in visited: continue
+                visited.add(word)
+                for i in range(K):
+                    w = word[:i] + '*' + word[i + 1:]
+                    for neighbor in neighbors[w]:
+                        if neighbor in endSet: return res + 1
+                        tmpSet.add(neighbor)
+            beginSet = tmpSet
+            res += 1
+
+        return 0

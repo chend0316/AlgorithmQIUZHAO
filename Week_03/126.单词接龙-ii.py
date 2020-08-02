@@ -63,3 +63,113 @@ class Solution:
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
 # @lc code=end
 
+# 方法一：队列里面放 path，因为要输出所有路径无法使用 visited，所以超时了
+# 其实是可以用 visited 的，见其它方法
+class Solution:
+    def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+        if not wordList or endWord not in wordList: return []
+        res = []
+        neighbors = {}
+        K = len(beginWord)
+        for word in wordList + [beginWord]:
+            for i in range(K):
+                key = word[:i] + '*' + word[i + 1:]
+                neighbors.setdefault(key, [])
+                neighbors[key].append(word)
+
+        queue = collections.deque()
+        queue.append([beginWord])
+        while queue:
+            found = False
+            n = len(queue)
+            while n:
+                n -= 1
+                path = queue.popleft()
+                word = path[-1]
+                for i in range(K):
+                    key = word[:i] + '*' + word[i + 1:]
+                    for neighbor in neighbors[key]:
+                        if neighbor == endWord:
+                            found = True
+                            res.append(path + [endWord])
+                        elif neighbor not in path:  # 这里要优化
+                            queue.append(path + [neighbor])
+            if found: break
+
+        return res
+
+# 方法二：队列里面放 path，然后使用 visited 确保不会走垃圾路径导致超时
+# 这里的技巧是用了内外两个 visited 集合，让 visited 按层更新，而不是按次更新
+# 如果是按次更新，则同层节点会冲突，导致漏解
+class Solution:
+    def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+        if not wordList or endWord not in wordList: return []
+        res = []
+        neighbors = {}
+        K = len(beginWord)
+        for word in wordList + [beginWord]:
+            for i in range(K):
+                key = word[:i] + '*' + word[i + 1:]
+                neighbors.setdefault(key, [])
+                neighbors[key].append(word)
+
+        queue = collections.deque()
+        queue.append([beginWord])
+        visited = { beginWord, }
+        while queue:
+            willVisited = set()
+            found = False
+            n = len(queue)
+            while n:
+                n -= 1
+                path = queue.popleft()
+                word = path[-1]
+                for i in range(K):
+                    key = word[:i] + '*' + word[i + 1:]
+                    for neighbor in neighbors[key]:
+                        if neighbor == endWord:
+                            found = True
+                            res.append(path + [endWord])
+                        elif neighbor not in visited:  # 不能走回到上一层走过的节点
+                            queue.append(path + [neighbor])
+                            willVisited.add(neighbor)  # 不要写成 visited，否则就变成按次更新
+            visited = visited.union(willVisited)  # 按层批量更新
+            if found: break
+
+        return res
+
+# 方法三：队列里面放节点，而不是路径，所以这是「传统 DFS + visited」，因此自然不会走垃圾路径导致超时
+# 但如何输出所有路径呢？这就是妙的地方了，见代码
+class Solution:
+    def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
+        if not wordList or endWord not in wordList: return []
+        neighbors = {}
+        K = len(beginWord)
+        for word in wordList + [beginWord]:
+            for i in range(K):
+                key = word[:i] + '*' + word[i + 1:]
+                neighbors.setdefault(key, [])
+                neighbors[key].append(word)
+
+        queue = collections.deque()
+        queue.append(beginWord)
+        ans = { beginWord: [[beginWord]] }
+        visited = { beginWord, }
+        while queue:
+            if endWord in ans.keys(): break
+            n = len(queue)
+            willVisited = set()
+            while n:
+                n -= 1
+                word = queue.popleft()
+                for i in range(K):
+                    key = word[:i] + '*' + word[i + 1:]
+                    for neighbor in neighbors[key]:
+                        if neighbor not in visited:
+                            if neighbor not in willVisited: queue.append(neighbor)
+                            willVisited.add(neighbor)
+                            ans.setdefault(neighbor, [])
+                            ans[neighbor].extend([t + [neighbor] for t in ans[word]])
+            visited = visited.union(willVisited)
+
+        return ans[endWord] if endWord in ans.keys() else []

@@ -129,21 +129,21 @@
 | 1      |              | 整个系列挺难的               | [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) |
 | 1      |              |                              | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) |
 |        |              |                              | [874. 模拟行走机器人](https://leetcode-cn.com/problems/walking-robot-simulation/) |
-| 1      |              | 重点复习                     | [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
+| 2      | 4            | 重点复习                     | [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
 | 1      |              | 搜索、并查集                 | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |
 | 1      |              | 这题不复习了，题目读半天     | [529. 扫雷游戏](https://leetcode-cn.com/problems/minesweeper/) |
 | 1      |              |                              | [55. 跳跃游戏](https://leetcode-cn.com/problems/jump-game/)  |
 | 2      | 2            | 多复习，二分查找的难题       | [\*33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/) |
 | 1      | 1            | 二分、从右上角开始当做搜索树 | [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/) |
-| 1      | 1            | 二分，多复习                 | [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) |
-|        |              |                              | [126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/) |
+| 2      | 2            | 二分，多复习                 | [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) |
+| 3      | 2            | 重点复习                     | [126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/) |
 |        |              |                              | [45. 跳跃游戏 II](https://leetcode-cn.com/problems/jump-game-ii/) |
 
 ## 刷题笔记
 
 [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/)这题输入规模比较小，相比之下[127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/)的输入规模就很大。
 
-[860. 柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/)，题目条件特殊，贪心解决，代码也可以根据业务写死，如下。
+[860. 柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/)，题目条件特殊，贪心解决，代码也可以根据业务写死，如下。但是此题明显会有变种，成为一个系列的题目。
 
 ```python
 def lemonadeChange(self, bills):
@@ -157,5 +157,5 @@ def lemonadeChange(self, bills):
     return True
 ```
 
-但是此题明显会有变种，成为一个系列的题目。
+
 
