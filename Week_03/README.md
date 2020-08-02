@@ -20,6 +20,7 @@
 - 不要在同一道题上一直研究，就像同一个汉字看多了就会不认识，同一道题一直研究“神经会疲劳”，这时候要换换题目换换脑子，过几个小时再来研究
 - 不要追求完美主义，做笔记不要把所有解法都记下来，只记自己目前领悟最深的就行
 - 好记性不如烂笔头，烂笔头不如谷歌；与其辛苦做所谓的大而全的笔记，不如多逛逛力扣国际站、多用谷歌搜别人的笔记总结
+- 精神不振不要硬钢，注意休息、换换头脑
 
 ## 每周课内遍数记录
 
@@ -137,25 +138,253 @@
 | 1      | 1            | 二分、从右上角开始当做搜索树 | [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/) |
 | 2      | 2            | 二分，多复习                 | [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/) |
 | 3      | 2            | 重点复习                     | [126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/) |
-|        |              |                              | [45. 跳跃游戏 II](https://leetcode-cn.com/problems/jump-game-ii/) |
+| 1      | 1            | 重点复习                     | [45. 跳跃游戏 II](https://leetcode-cn.com/problems/jump-game-ii/) |
 
 ## 刷题笔记
 
-[433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/)这题输入规模比较小，相比之下[127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/)的输入规模就很大。
+### 树和图的遍历
+#### DFS、BFS
+- [102. 二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)，除了用BFS竟然还能用DFS做
+- [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
+- [111. 二叉树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/)
+- [22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/)，看起来不像，但其实是DFS+剪枝
+- [36. 有效的数独](https://leetcode-cn.com/problems/valid-sudoku/)
+- [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/)
 
-[860. 柠檬水找零](https://leetcode-cn.com/problems/lemonade-change/)，题目条件特殊，贪心解决，代码也可以根据业务写死，如下。但是此题明显会有变种，成为一个系列的题目。
+#### 层次遍历 vs BFS
+在网上搜了一下，BFS 和层次遍历好像是同一个东西？但在我的笔记中，把他们视为不同的算法。
 
+BFS 不能将不同层的节点“分隔”开来，层次遍历在 BFS 代码的基础上增加了一些小技巧，使得我们可以“分隔”不同层的节点。
+
+层次遍历的基础题见[102. 二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)，有多种实现技巧。我了解的有两种，我给他们起名字为：队列计数法、新旧队列法。
+
+102题使用「队列计数法」的代码如下：
 ```python
-def lemonadeChange(self, bills):
-    five = ten = 0
-    for i in bills:
-        if i == 5: five += 1
-        elif i == 10: five, ten = five - 1, ten + 1
-        elif ten > 0: five, ten = five - 1, ten - 1
-        else: five -= 3
-        if five < 0: return False
-    return True
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        res = []
+        queue = collections.deque()
+        if root: queue.append(root)
+        while queue:
+            res.append([])
+            n = len(queue)
+            while n:
+                n -= 1
+                node = queue.popleft()
+                res[-1].append(node.val)
+                if node.left: queue.append(node.left)
+                if node.right: queue.append(node.right)
+        return res
 ```
 
+102题使用「新旧队列法」的代码如下：
+```python
+class Solution:
+    def levelOrder(self, root: TreeNode) -> List[List[int]]:
+        res = []
+        queue = []
+        if root: queue.append(root)
+        while queue:
+            res.append([])
+            newQueue = []
+            for node in queue:
+                res[-1].append(node.val)
+                if node.left: newQueue.append(node.left)
+                if node.right: newQueue.append(node.right)
+            queue = newQueue
+        return res
+```
 
+层次遍历是一个代码技巧，熟悉其思想可以写出其它变种，例如[126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)在国际站上有[一个绝妙的解法](https://leetcode.com/problems/word-ladder-ii/discuss/40482/Python-simple-BFS-layer-by-layer)，就是将「新旧队列法」运用到了炉火纯青的地步，代码如下：
 
+```python
+class Solution(object):
+    def findLadders(self, beginWord, endWord, wordList):
+        wordList = set(wordList)
+        res = []
+        layer = {}
+        layer[beginWord] = [[beginWord]]
+
+        while layer:
+            newlayer = collections.defaultdict(list)  # 用哈希表而不是队列
+            for w in layer:
+                if w == endWord: 
+                    res.extend(k for k in layer[w])
+                else:
+                    for i in range(len(w)):
+                        for c in 'abcdefghijklmnopqrstuvwxyz':
+                            neww = w[:i]+c+w[i+1:]
+                            if neww in wordList:
+                                newlayer[neww]+=[j+[neww] for j in layer[w]]
+
+            wordList -= set(newlayer.keys())
+            layer = newlayer  # 这也是用「新旧队列」法实现的层次遍历，当然这里是哈希表不是队列
+
+        return res
+```
+
+#### 暴力DFS
+[543. 二叉树的直径](https://leetcode-cn.com/problems/diameter-of-binary-tree/)除了暴力 DFS 还有更好的解法。
+
+[437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)有更好的解法，这里我们给出的是暴力 DFS 的代码：
+
+```java
+public class Solution {
+    public int pathSum(TreeNode root, int sum) {
+        if (root == null) return 0;
+        return pathSumFrom(root, sum) + pathSum(root.left, sum) + pathSum(root.right, sum);
+    }
+
+    private int pathSumFrom(TreeNode node, int sum) {
+        if (node == null) return 0;
+        int ret = 0;
+        if (node.val == sum) ret++;
+        return ret + pathSumFrom(node.left, sum - node.val) + pathSumFrom(node.right, sum - node.val);
+    }
+}
+```
+
+[1367. 二叉树中的列表](https://leetcode-cn.com/problems/linked-list-in-binary-tree/)也能用[DP来解](https://leetcode.com/problems/linked-list-in-binary-tree/discuss/524881/Python-Recursive-Solution-O(N)-Time)，这里我们给出的是暴力 DFS 的代码：
+
+```python
+def isSubPath(self, head, root):
+    def dfs(head, root):
+        if not head: return True
+        if not root: return False
+        if root.val != head.val: return False
+        return dfs(head.next, root.left) or dfs(head.next, root.right)
+    if not head: return True
+    if not root: return False
+    # 重点学习下面这行
+    return dfs(head, root) or self.isSubPath(head, root.left) or self.isSubPath(head, root.right)
+```
+
+### 二分查找
+
+千万不要小瞧二分查找，面试前重点准备，二分查找和链表都很容易丢分。二分查找有各种变形，以至于没有统一的二分模板。
+
+为了后续介绍的统一，这里规定一些背景知识，高亮的部分都可能是二分算法的“变形点”：
+- 代码变量命名为：lo、hi、mid，三个变量都是代表数组下标
+- 在 \[lo, ..., hi\] 闭区间内搜索，这个区间统一叫做搜索区间
+- 根据 `mid 信息`将搜索区间缩小为`左子区间`或`右子区间`
+- 如果`搜索区间太小了`就退出循环
+- `一定能找到目标吗`
+
+最传统的二分代码模板如下，大家先对传统模板有个共识，熟悉了传统模板之后我们来讲二分的各种变种。
+```python
+def binSearch(nums, target):
+    lo, hi = 0, N - 1
+    while lo <= hi:
+        mid = (lo + hi) // 2
+        if nums[mid] < target: lo = mid + 1
+        elif nums[mid] > target: hi = mid - 1
+        else: return mid  # 找到了
+    return -1  # 没找到
+```
+
+#### 变形1：左右区间是否包含 mid 呢？
+「不包含mid (传统)」如果左右子区间都不包含 mid，代码为：
+- `mid = (lo + hi) // 2` 可以
+- `mid = (lo + hi + 1) // 2` 也可以
+- `lo = mid + 1`
+- `hi = mid - 1`
+
+「右包含mid (变种)」如果右子区间包含 mid，代码为：
+- `mid = (lo + hi) // 2` 不可以，会死循环
+- `mid = (lo + hi + 1) // 2` 可以
+- `lo = mid`
+- `hi = mid - 1`
+
+「左包含mid (变种)」如果左子区间包含 mid，代码为：
+- `mid = (lo + hi) // 2` 可以
+- `mid = (lo + hi + 1) // 2` 不可以，会死循环
+- `lo = mid + 1`
+- `hi = mid`
+
+「全包含mid (变种)」左右子区间都可能包含 mid，无解，一定会死循环。需要借助「变形2」的知识点避免死循环：
+- `mid = (lo + hi) // 2` 不可以，会死循环
+- `mid = (lo + hi + 1) // 2` 不可以，会死循环
+- `lo = mid + 1`
+- `hi = mid - 1`
+
+「不包含mid」的题目有：[367. 有效的完全平方数](https://leetcode-cn.com/problems/valid-perfect-square/)等等。
+367题的代码如下。
+```python
+class Solution:
+    def isPerfectSquare(self, num: int) -> bool:
+        if num < 1: return False
+        lo, hi = 1, num
+        while lo <= hi:
+            mid = (lo + hi) // 2
+            if mid * mid < num: lo = mid + 1
+            elif mid * mid > num: hi = mid - 1
+            else: return True
+        return False
+```
+
+「右包含mid」的题目有：[69. x 的平方根](https://leetcode-cn.com/problems/sqrtx/)等等。
+69题的代码如下：
+```python
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        lo, hi = 0, x
+        while lo < hi:
+            mid = (lo + hi + 1) // 2
+            if mid * mid < x: lo = mid
+            elif mid * mid > x: hi = mid - 1
+            else: return mid
+        return lo
+```
+
+「左包含mid」的题目有：[278. 第一个错误的版本](https://leetcode-cn.com/problems/first-bad-version/)等等。
+278题的代码如下：
+```python
+class Solution:
+    def firstBadVersion(self, n):
+        lo, hi = 1, n
+        # 我们要保证区间内含有第一个错误版本
+        # 如果 mid 是错误版本，那么排除右区间，范围缩小到左区间，左区间包含 mid 本身
+        while lo < hi:
+            mid = (lo + hi) // 2
+            if isBadVersion(mid): hi = mid
+            else: lo = mid + 1
+        return lo
+```
+
+#### 变形2：搜索区间多小的时候退出循环呢？
+有3种情况：
+- `while lo <= hi`，区间「长度为0」的时候退出
+- `while lo < hi`，区间「长度为1」的时候退出
+- `while lo < hi - 1`，区间「长度为2」的时候退出
+
+区间「长度为0」的代码，用于可能无解的题型，循环退出后就返回无解。
+
+区间「长度为1」的代码用于一定有解的题型，当区间长度为1的时候，解已经明确了，就可以停止循环了。
+如果你不退出循环，轻则逻辑混乱，重则死循环，请看[278. 第一个错误的版本](https://leetcode-cn.com/problems/first-bad-version/)的一个反面教材：
+```python
+# 这种题为啥会死循环
+# 因为这题 while 内不能写 return 语句
+class Solution:
+    def firstBadVersion(self, n):
+        lo, hi = 1, n
+        while lo <= hi:  # 用 <= 会引起死循环，需要改为 <
+            mid = (lo + hi) // 2
+            if isBadVersion(mid): hi = mid
+            else: lo = mid + 1
+        return lo
+```
+
+区间「长度为2」的代码用于保证区间长度不小于3，避免「全包含mid」出现死循环。
+
+#### 变种3：如何根据 mid 信息缩小搜索区间呢？
+这种变种就很灵活了，需要具体题目具体分析，没有一个通用的模板。
+
+二分查找变种：旋转排序数组。如果有重复元素，那么会难很多。
+- [33. 搜索旋转排序数组](https://leetcode-cn.com/problems/search-in-rotated-sorted-array/)
+- [81. 搜索旋转排序数组 II](https://leetcode-cn.com/problems/search-in-rotated-sorted-array-ii/)
+- [153. 寻找旋转排序数组中的最小值](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/)
+- [154. 寻找旋转排序数组中的最小值 II](https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array-ii/)
+
+二分查找变种：搜索二维矩阵。这题可以不用二分，把矩阵当成搜索树从右上角开始搜，代码会超级简单。但出于练习目的，建议用二分来刷。
+- [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)，
+- [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/)，二分不是这题的最优解
