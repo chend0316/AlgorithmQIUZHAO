@@ -26,6 +26,14 @@
 
 ### 树和图的遍历
 #### DFS、BFS
+DFS 和 BFS 的区别：
+
+|            | DFS深度优先                      | BFS广度优先                    |
+| ---------- | -------------------------------- | ------------------------------ |
+| 时间复杂度 |                                  | 在最短路问题中有极大的优势     |
+| 空间复杂度 | 取决于树的高度、图的最长环路长度 | 取决于树的“宽度”、图里面不好说 |
+| 实现方式   | 一般是递归，很少用迭代，实现容易 | 迭代，实现难一点点             |
+
 - [102. 二叉树的层序遍历](https://leetcode-cn.com/problems/binary-tree-level-order-traversal/)，除了用BFS竟然还能用DFS做
 - [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/)
 - [111. 二叉树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/)
@@ -77,10 +85,12 @@ class Solution:
         return res
 ```
 
-层次遍历是一个代码技巧，熟悉其思想可以写出其它变种，例如[126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)在国际站上有[一个绝妙的解法](https://leetcode.com/problems/word-ladder-ii/discuss/40482/Python-simple-BFS-layer-by-layer)，就是将「新旧队列法」运用到了出神入化的地步，代码如下：
+层次遍历是一个代码技巧，熟悉其思想可以写出其它变种。例如双向 BFS 就将层次遍历运用到了出神入化的地步，它是在「新旧队列法」的基础上使用哈希表来代替队列。
+
+#### 双向 BFS
+[126. 单词接龙 II](https://leetcode-cn.com/problems/word-ladder-ii/)在国际站上有[一个绝妙的双向 BFS 解法](https://leetcode.com/problems/word-ladder-ii/discuss/40482/Python-simple-BFS-layer-by-layer)，代码如下：
 
 ```python
-# 这个例子放在这边有点太难了，因为这个老外用的技巧有点多，todo：之后找个更适合新手学习的例子吧
 class Solution(object):
     def findLadders(self, beginWord, endWord, wordList):
         wordList = set(wordList)
@@ -101,7 +111,7 @@ class Solution(object):
                                 newlayer[neww]+=[j+[neww] for j in layer[w]]
 
             wordList -= set(newlayer.keys())
-            layer = newlayer  # 用「新旧队列」法实现的层次遍历，不过这里用哈希表取代队列
+            layer = newlayer  # 这是用「新旧队列」法实现的层次遍历，不过这里用哈希表取代队列
 
         return res
 ```
