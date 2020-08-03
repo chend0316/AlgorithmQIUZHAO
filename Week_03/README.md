@@ -293,6 +293,35 @@ class Solution:
 - [74. 搜索二维矩阵](https://leetcode-cn.com/problems/search-a-2d-matrix/)，
 - [240. 搜索二维矩阵 II](https://leetcode-cn.com/problems/search-a-2d-matrix-ii/)，二分不是这题的最优解
 
+#### 更多二分习题
+
+[34. 在排序数组中查找元素的第一个和最后一个位置](https://leetcode-cn.com/problems/find-first-and-last-position-of-element-in-sorted-array/)这题在二分的过程中不断更新答案：
+```python
+class Solution:
+    def searchRange(self, nums: List[int], target: int) -> List[int]:
+        lo, hi = 0, len(nums) - 1
+        first = -1
+        while lo <= hi:
+            mid = (lo + hi) // 2
+            if target > nums[mid]: lo = mid + 1
+            elif target < nums[mid]: hi = mid - 1
+            else:
+                first = mid  #
+                hi = mid - 1  #
+        
+        lo, hi = 0, len(nums) - 1
+        last = -1
+        while lo <= hi:
+            mid = (lo + hi + 1) // 2
+            if target > nums[mid]: lo = mid + 1
+            elif target < nums[mid]: hi = mid - 1
+            else:
+                last = mid  #
+                lo = mid + 1  #
+
+        return [first, last]
+```
+
 ## 每周课内遍数记录
 
 ### week1刷题遍数记录
