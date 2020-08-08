@@ -1,5 +1,66 @@
 # 学习笔记
 
+## 309. 最佳买卖股票时机含冷冻期
+
+每天都有3种可能的操作：买、卖、不动。
+
+我们将状态树画出，使用暴力递归遍历所有操作。随着树深度增加，节点数量爆发式增长！问题的本质是节点承载的信息量太大了（包含了所有历史交易记录），这些信息是没用的，因此我们归纳有用信息，减少每一层的节点数量。
+
+【方法一】我们将状态树中绿色、黄色的节点归纳到一起，归纳得到一张DP表，这就使得每一层的节点数量仅为2。
+
+![force1](img/force1.png)
+
+对于上面这棵状态树，我们规约为如下DP表。
+
+![image-20200808184727452](img/dp1.png)
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices: return 0
+        n = len(prices)
+        a = [0]*(n+2)  # 没有股票
+        b = [0]*(n+2)  # 持有股票
+        a[-2] = 0
+        a[-1] = 0
+        # b[-2] = xxx  # 不管初始化为任何值，都不影响结果
+        b[-1] = -prices[0]  # 也可用负无穷大
+
+        for i in range(n):
+            a[i] = max(a[i-1], b[i-1] + prices[i])
+            b[i] = max(b[i-1], a[i-2] - prices[i])
+        
+        return a[n-1]
+```
+
+【方法二】在方法一中，我们计算 `a[i]` 的时候要用到前两天的信息，这是一种DP艺术。但标准DP只依赖前一天的信息，下面我们重新对状态树进行归纳，我们将绿色、黄色、蓝色的节点归纳到一起，归纳得到一张标准DP表，这使得每一层节点数量为3。
+
+![](img/force2.png)
+
+对于上面这棵状态树，我们规约为如下DP表。
+
+![dp2](img/dp2.png)
+
+```python
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        if not prices: return 0
+        n = len(prices)
+        a = [0]*(n+1)  # 没有股票
+        b = [0]*(n+1)  # 持有股票
+        c = [0]*(n+1)  # 冷冻期
+        a[-1] = 0
+        b[-1] = -prices[0]  # 也可用负无穷大
+        c[-1] = 0
+
+        for i in range(n):
+            a[i] = max(a[i-1], c[i-1])
+            b[i] = max(b[i-1], a[i-1] - prices[i])
+            c[i] = b[i-1] + prices[i]
+        
+        return max(a[n-1], c[n-1])
+```
+
 ## 每周课内遍数记录
 
 一开始每周都有记录课外刷题，后来不记录了。
@@ -136,8 +197,8 @@
 | 1        | 1            |                  | [213. 打家劫舍 II](https://leetcode-cn.com/problems/house-robber-ii/) |
 | 1        |              |                  | [121. 买卖股票的最佳时机](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock/) |
 | 这题重复 |              |                  | 122. 买卖股票的最佳时机 II                                   |
-| 1        | 2            | 重点复习         | [123. 买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/) |
-|          |              |                  | [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) |
+| 2        | 2            | 重点复习         | [123. 买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/) |
+| 1        |              |                  | [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) |
 |          |              |                  | [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) |
 |          |              |                  | [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) |
 
@@ -148,7 +209,7 @@
 | 敲代码 | 阅读别人代码 | 备注 | 题目                                                         |
 | ------ | ------------ | ---- | ------------------------------------------------------------ |
 | 1      |              |      | [64. 最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/) |
-|        |              |      | [91. 解码方法](https://leetcode-cn.com/problems/decode-ways/) |
+| 1      |              |      | [91. 解码方法](https://leetcode-cn.com/problems/decode-ways/) |
 |        |              |      | [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/) |
 |        |              |      | [621. 任务调度器](https://leetcode-cn.com/problems/task-scheduler/) |
 |        |              |      | [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) |
