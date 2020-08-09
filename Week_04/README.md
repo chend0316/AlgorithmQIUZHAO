@@ -128,11 +128,9 @@ class Solution:
 
 课外刷题
 
-| 敲代码 | 阅读别人代码 | 备注                           | 题目                                                         |
-| ------ | ------------ | ------------------------------ | ------------------------------------------------------------ |
-| 1      | 1            | DP、DP状压                     | [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/) |
-| \*0    |              | 构造邻接表、广搜、两边同时广搜 | [\*127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
-| 1      |              | split库函数                    | [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/) |
+| 敲代码 | 阅读别人代码 | 备注        | 题目                                                         |
+| ------ | ------------ | ----------- | ------------------------------------------------------------ |
+| 1      |              | split库函数 | [151. 翻转字符串里的单词](https://leetcode-cn.com/problems/reverse-words-in-a-string/) |
 
 ### week2刷题遍数记录
 课内实战
@@ -216,7 +214,7 @@ class Solution:
 | 这题重复 |              |                  | 70. 爬楼梯                                                   |
 | 1        |              | 多复习           | [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/) |
 | 1        | 1            |                  | [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/) |
-|          |              | 重点复习，好难啊 | [152. 乘积最大子数组](https://leetcode-cn.com/problems/maximum-product-subarray/) |
+| 1        |              | 重点复习，好难啊 | [152. 乘积最大子数组](https://leetcode-cn.com/problems/maximum-product-subarray/) |
 | 1        | 1            |                  | [322. 零钱兑换](https://leetcode-cn.com/problems/coin-change/) |
 | 1        | 1            |                  | [198. 打家劫舍](https://leetcode-cn.com/problems/house-robber/) |
 | 1        | 1            |                  | [213. 打家劫舍 II](https://leetcode-cn.com/problems/house-robber-ii/) |
@@ -238,4 +236,10 @@ class Solution:
 | 1      | 1            |                    | [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) |
 | 1      | 1            |                    | [32. 最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/) |
 | 1      |              |                    | [72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/) |
+|        |              |                    | [363. 矩形区域不超过 K 的最大数值和](https://leetcode-cn.com/problems/max-sum-of-rectangle-no-larger-than-k/) |
+|        |              |                    | [403. 青蛙过河](https://leetcode-cn.com/problems/frog-jump/) |
+|        |              |                    | [410. 分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/) |
+|        |              |                    | [552. 学生出勤记录 II](https://leetcode-cn.com/problems/student-attendance-record-ii/) |
+|        |              |                    | [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/) |
+|        |              |                    | [312. 戳气球](https://leetcode-cn.com/problems/burst-balloons/) |
 
