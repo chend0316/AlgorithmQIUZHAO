@@ -236,4 +236,6 @@ class Solution:
 | 1      | \*1          |                    | [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/) |
 |        |              | \*这题是不是DP啊？ | [\*621. 任务调度器](https://leetcode-cn.com/problems/task-scheduler/) |
 | 1      | 1            |                    | [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) |
+| 1      | 1            |                    | [32. 最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/) |
+| 1      |              |                    | [72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/) |
 
