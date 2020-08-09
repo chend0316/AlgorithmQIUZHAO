@@ -1,5 +1,30 @@
 # 学习笔记
 
+## DP写完如何检查是正确的？
+
+股票 DP 方程写完后，最终代码太简单，自己都难以置信这样就能算出答案？可能是因为 DP 思维还没转变过来吧。就拿 [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) 来说，代码逻辑简单到自己都不相信，总觉得自己是不是少考虑了几种情况。
+
+```python
+class Solution:
+    def maxProfit(self, K: int, prices: List[int]) -> int:
+        N = len(prices)
+        dp = [[[0]*(K+1) for _ in range(2)] for _ in range(N+1)]
+        # 约定为最多买入 k 次
+        for k in range(K+1):
+            dp[-1][1][k] = -math.inf
+            # dp[-1][0][k] = 0
+        
+        for i in range(N):
+            for k in range(K+1):
+                dp[i][0][k] = max(dp[i-1][0][k], dp[i-1][1][k] + prices[i])
+                if k > 0:
+                    dp[i][1][k] = max(dp[i-1][1][k], dp[i-1][0][k-1] - prices[i])
+                else:
+                    dp[i][1][k] = -math.inf
+        
+        return dp[N-1][0][K]
+```
+
 ## 309. 最佳买卖股票时机含冷冻期
 
 每天都有3种可能的操作：买、卖、不动。
@@ -10,7 +35,7 @@
 
 ![force1](img/force1.png)
 
-对于上面这棵状态树，我们规约为如下DP表。
+对于上面这棵状态树，我们归纳为如下DP表。
 
 ![dp1](img/dp1.png)
 
@@ -37,7 +62,7 @@ class Solution:
 
 ![force2](img/force2.png)
 
-对于上面这棵状态树，我们规约为如下DP表。
+对于上面这棵状态树，我们归纳为如下DP表。
 
 ![dp2](img/dp2.png)
 
@@ -188,7 +213,7 @@ class Solution:
 | 1        |              |                  | [62. 不同路径](https://leetcode-cn.com/problems/unique-paths/) |
 | 1        |              |                  | [63. 不同路径 II](https://leetcode-cn.com/problems/unique-paths-ii/) |
 | 1        |              | 多复习           | [1143. 最长公共子序列](https://leetcode-cn.com/problems/longest-common-subsequence/) |
-|          |              |                  | 70. 爬楼梯                                                   |
+| 这题重复 |              |                  | 70. 爬楼梯                                                   |
 | 1        |              | 多复习           | [120. 三角形最小路径和](https://leetcode-cn.com/problems/triangle/) |
 | 1        | 1            |                  | [53. 最大子序和](https://leetcode-cn.com/problems/maximum-subarray/) |
 |          |              | 重点复习，好难啊 | [152. 乘积最大子数组](https://leetcode-cn.com/problems/maximum-product-subarray/) |
@@ -199,17 +224,16 @@ class Solution:
 | 这题重复 |              |                  | 122. 买卖股票的最佳时机 II                                   |
 | 2        | 2            | 重点复习         | [123. 买卖股票的最佳时机 III](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iii/) |
 | 1        |              |                  | [309. 最佳买卖股票时机含冷冻期](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-cooldown/) |
-|          |              |                  | [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) |
-|          |              |                  | [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) |
-
-高级 DP 实战题目
+| 1        | 1            |                  | [188. 买卖股票的最佳时机 IV](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-iv/) |
+| 1        |              |                  | [714. 买卖股票的最佳时机含手续费](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-with-transaction-fee/) |
 
 课后作业
 
-| 敲代码 | 阅读别人代码 | 备注 | 题目                                                         |
-| ------ | ------------ | ---- | ------------------------------------------------------------ |
-| 1      |              |      | [64. 最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/) |
-| 1      |              |      | [91. 解码方法](https://leetcode-cn.com/problems/decode-ways/) |
-|        |              |      | [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/) |
-|        |              |      | [621. 任务调度器](https://leetcode-cn.com/problems/task-scheduler/) |
-|        |              |      | [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) |
+| 敲代码 | 阅读别人代码 | 备注               | 题目                                                         |
+| ------ | ------------ | ------------------ | ------------------------------------------------------------ |
+| 1      |              |                    | [64. 最小路径和](https://leetcode-cn.com/problems/minimum-path-sum/) |
+| 1      |              |                    | [91. 解码方法](https://leetcode-cn.com/problems/decode-ways/) |
+| 1      | \*1          |                    | [221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/) |
+|        |              | \*这题是不是DP啊？ | [\*621. 任务调度器](https://leetcode-cn.com/problems/task-scheduler/) |
+| 1      | 1            |                    | [647. 回文子串](https://leetcode-cn.com/problems/palindromic-substrings/) |
+
