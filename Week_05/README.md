@@ -1,5 +1,33 @@
 # 学习笔记
 
+## 并查集
+
+并查集元素的 key 是整数，且从 0 开始，这样就能作为下标了。疑问：要是 key 不是简单的整数该怎么办？
+
+## 自己整理的双向BFS模板
+
+```python
+def debfs(start, end):
+  if start == end:  # 必须判断
+    return
+  s1, s2, visited = {start}, {end}, {start, end}
+  level = 2  # 根据题目 1 or 2
+  while s1:
+    tmp = set()
+    for cur in s1:
+      for next in gen_relative_nodes(node):
+        if next in s2: return level  # found
+        if next not in visited:
+          tmp.add(next)
+          visited.add(next)
+    s1 = tmp
+    if len(s1) > len(s2): s1, s2 = s2, s1
+  return 0  # 根据题目 0 or -1
+```
+
+## 常用位运算 (背)
+- `x = x & (x - 1)` 清零最低位的1
+
 ## 每周课内遍数记录
 
 ### week1刷题遍数记录
@@ -47,7 +75,7 @@
 | 1 | \*1 | 多复习题解 | [剑指 Offer 40. 最小的k个数](https://leetcode-cn.com/problems/zui-xiao-de-kge-shu-lcof/) |
 | 这题重复 | - | - | 239. 滑动窗口最大值 |
 | 这题重复 | - | - | 70. 爬楼梯 |
-| 1 | 1 | 多复习 | [22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/) |
+| 2 | 1 | 多复习，剪枝模板 | [22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/) |
 | 1 |  | 软柿子 | [226. 翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/) |
 | 1 |  | 软柿子 | [104. 二叉树的最大深度](https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/) |
 | 2 | 3 | 多复习，易丢分，最简代码 | [111. 二叉树的最小深度](https://leetcode-cn.com/problems/minimum-depth-of-binary-tree/) |
@@ -100,7 +128,7 @@
 | 1      |              | 整个系列挺难的               | [122. 买卖股票的最佳时机 II](https://leetcode-cn.com/problems/best-time-to-buy-and-sell-stock-ii/) |
 | 1      |              |                              | [455. 分发饼干](https://leetcode-cn.com/problems/assign-cookies/) |
 |        |              |                              | [874. 模拟行走机器人](https://leetcode-cn.com/problems/walking-robot-simulation/) |
-| 2      | 4            | 重点复习                     | [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
+| 3      | 4            | 重点复习                     | [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
 | 1      |              | 搜索、并查集                 | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |
 | 1      |              | 这题不复习了，题目读半天     | [529. 扫雷游戏](https://leetcode-cn.com/problems/minesweeper/) |
 | 1      |              |                              | [55. 跳跃游戏](https://leetcode-cn.com/problems/jump-game/)  |
@@ -145,38 +173,37 @@
 | 1      | 1            |                    | [32. 最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/) |
 | 1      |              |                    | [72. 编辑距离](https://leetcode-cn.com/problems/edit-distance/) |
 |        |              |                    | [363. 矩形区域不超过 K 的最大数值和](https://leetcode-cn.com/problems/max-sum-of-rectangle-no-larger-than-k/) |
-|        |              |                    | [403. 青蛙过河](https://leetcode-cn.com/problems/frog-jump/) |
+| 1      |              |                    | [403. 青蛙过河](https://leetcode-cn.com/problems/frog-jump/) |
 |        |              |                    | [410. 分割数组的最大值](https://leetcode-cn.com/problems/split-array-largest-sum/) |
 |        |              |                    | [552. 学生出勤记录 II](https://leetcode-cn.com/problems/student-attendance-record-ii/) |
-|        |              |                    | [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/) |
+| 1      |              |                    | [76. 最小覆盖子串](https://leetcode-cn.com/problems/minimum-window-substring/) |
 |        |              |                    | [312. 戳气球](https://leetcode-cn.com/problems/burst-balloons/) |
 
 ### week5
 
 课内实战
 
-| 敲代码 | 阅读别人代码 | 备注 | 题目                                                         |
-| ------ | ------------ | ---- | ------------------------------------------------------------ |
-|        |              |      | [208. 实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/) |
-|        |              |      | [212. 单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/) |
-|        |              |      | [547. 朋友圈](https://leetcode-cn.com/problems/friend-circles/) |
-|        |              |      | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |
-|        |              |      | [130. 被围绕的区域](https://leetcode-cn.com/problems/surrounded-regions/) |
-|        |              |      | [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/) |
-|        |              |      | [22. 括号生成](https://leetcode-cn.com/problems/generate-parentheses/) |
-|        |              |      | [51. N皇后](https://leetcode-cn.com/problems/n-queens/)      |
-|        |              |      | [36. 有效的数独](https://leetcode-cn.com/problems/valid-sudoku/) |
-|        |              |      | [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/) |
-|        |              |      | [127. 单词接龙](https://leetcode-cn.com/problems/word-ladder/) |
-|        |              |      | [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/) |
-|        |              |      | [1091. 二进制矩阵中的最短路径](https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/) |
-|        |              |      | [773. 滑动谜题](https://leetcode-cn.com/problems/sliding-puzzle/) |
-|        |              |      | [191. 位1的个数](https://leetcode-cn.com/problems/number-of-1-bits/) |
-|        |              |      | [231. 2的幂](https://leetcode-cn.com/problems/power-of-two/) |
-|        |              |      | [190. 颠倒二进制位](https://leetcode-cn.com/problems/reverse-bits/) |
-|        |              |      | [51. N皇后](https://leetcode-cn.com/problems/n-queens/)      |
-|        |              |      | [52. N皇后 II](https://leetcode-cn.com/problems/n-queens-ii/) |
-|        |              |      | [338. 比特位计数](https://leetcode-cn.com/problems/counting-bits/) |
+| 敲代码 | 阅读别人代码 | 备注     | 题目                                                         |
+| ------ | ------------ | -------- | ------------------------------------------------------------ |
+| 1      |              |          | [208. 实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/) |
+| 1      |              | Trie     | [212. 单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/) |
+| 1      |              |          | [547. 朋友圈](https://leetcode-cn.com/problems/friend-circles/) |
+| 1      |              |          | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |
+| 1      |              |          | [130. 被围绕的区域](https://leetcode-cn.com/problems/surrounded-regions/) |
+| 重复   |              |          | 70. 爬楼梯                                                   |
+| 重复   |              |          | 22. 括号生成                                                 |
+|        |              | 用位运算 | [51. N皇后](https://leetcode-cn.com/problems/n-queens/)      |
+| 1      | 1            |          | [36. 有效的数独](https://leetcode-cn.com/problems/valid-sudoku/) |
+| 1      | 1            | 重点复习 | [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/) |
+| 重复   |              |          | 127. 单词接龙                                                |
+| 1      |              |          | [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/) |
+|        |              |          | [1091. 二进制矩阵中的最短路径](https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/) |
+|        |              |          | [773. 滑动谜题](https://leetcode-cn.com/problems/sliding-puzzle/) |
+| 1      | 1            |          | [191. 位1的个数](https://leetcode-cn.com/problems/number-of-1-bits/) |
+| 1      |              |          | [231. 2的幂](https://leetcode-cn.com/problems/power-of-two/) |
+| 1      | 1            |          | [190. 颠倒二进制位](https://leetcode-cn.com/problems/reverse-bits/) |
+| 1      | 1            | 用位运算 | [52. N皇后 II](https://leetcode-cn.com/problems/n-queens-ii/) |
+| 1      | 1            |          | [\*338. 比特位计数](https://leetcode-cn.com/problems/counting-bits/) |
 
 课后作业
 
