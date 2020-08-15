@@ -9,21 +9,23 @@
 ```python
 def debfs(start, end):
   if start == end:  # 必须判断
-    return
+    return 2  # 根据题目 1 or 2
   s1, s2, visited = {start}, {end}, {start, end}
   level = 2  # 根据题目 1 or 2
   while s1:
     tmp = set()
     for cur in s1:
-      for next in gen_relative_nodes(node):
-        if next in s2: return level  # found
-        if next not in visited:
-          tmp.add(next)
-          visited.add(next)
+      for nex in gen_relative_nodes(cur):
+        if nex in s2: return level  # found
+        if nex not in visited:
+          tmp.add(nex)
+          visited.add(nex)
     s1 = tmp
     if len(s1) > len(s2): s1, s2 = s2, s1
   return 0  # 根据题目 0 or -1
 ```
+
+## “单词搜索 II”用 Tire 树实现的时间复杂度
 
 ## 常用位运算 (背)
 - `x = x & (x - 1)` 清零最低位的1
@@ -183,30 +185,26 @@ def debfs(start, end):
 
 课内实战
 
-| 敲代码 | 阅读别人代码 | 备注     | 题目                                                         |
-| ------ | ------------ | -------- | ------------------------------------------------------------ |
-| 1      |              |          | [208. 实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/) |
-| 1      |              | Trie     | [212. 单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/) |
-| 1      |              |          | [547. 朋友圈](https://leetcode-cn.com/problems/friend-circles/) |
-| 1      |              |          | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |
-| 1      |              |          | [130. 被围绕的区域](https://leetcode-cn.com/problems/surrounded-regions/) |
-| 重复   |              |          | 70. 爬楼梯                                                   |
-| 重复   |              |          | 22. 括号生成                                                 |
-|        |              | 用位运算 | [51. N皇后](https://leetcode-cn.com/problems/n-queens/)      |
-| 1      | 1            |          | [36. 有效的数独](https://leetcode-cn.com/problems/valid-sudoku/) |
-| 1      | 1            | 重点复习 | [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/) |
-| 重复   |              |          | 127. 单词接龙                                                |
-| 1      |              |          | [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/) |
-|        |              |          | [1091. 二进制矩阵中的最短路径](https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/) |
-|        |              |          | [773. 滑动谜题](https://leetcode-cn.com/problems/sliding-puzzle/) |
-| 1      | 1            |          | [191. 位1的个数](https://leetcode-cn.com/problems/number-of-1-bits/) |
-| 1      |              |          | [231. 2的幂](https://leetcode-cn.com/problems/power-of-two/) |
-| 1      | 1            |          | [190. 颠倒二进制位](https://leetcode-cn.com/problems/reverse-bits/) |
-| 1      | 1            | 用位运算 | [52. N皇后 II](https://leetcode-cn.com/problems/n-queens-ii/) |
-| 1      | 1            |          | [\*338. 比特位计数](https://leetcode-cn.com/problems/counting-bits/) |
+| 敲代码 | 阅读别人代码 | 备注               | 题目                                                         |
+| ------ | ------------ | ------------------ | ------------------------------------------------------------ |
+| 2      | 1            | 多练，无法一气呵成 | [208. 实现 Trie (前缀树)](https://leetcode-cn.com/problems/implement-trie-prefix-tree/) |
+| 1      |              | Trie               | [212. 单词搜索 II](https://leetcode-cn.com/problems/word-search-ii/) |
+| 1      |              |                    | [547. 朋友圈](https://leetcode-cn.com/problems/friend-circles/) |
+| 1      |              |                    | [200. 岛屿数量](https://leetcode-cn.com/problems/number-of-islands/) |
+| 1      |              |                    | [130. 被围绕的区域](https://leetcode-cn.com/problems/surrounded-regions/) |
+| 重复   |              |                    | 70. 爬楼梯                                                   |
+| 重复   |              |                    | 22. 括号生成                                                 |
+|        |              | 用位运算           | [51. N皇后](https://leetcode-cn.com/problems/n-queens/)      |
+| 1      | 1            |                    | [36. 有效的数独](https://leetcode-cn.com/problems/valid-sudoku/) |
+| 1      | 1            | 重点复习           | [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/) |
+| 重复   |              |                    | 127. 单词接龙                                                |
+| 1      |              |                    | [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/) |
+|        |              |                    | [1091. 二进制矩阵中的最短路径](https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/) |
+|        |              |                    | [773. 滑动谜题](https://leetcode-cn.com/problems/sliding-puzzle/) |
+| 1      | 1            |                    | [191. 位1的个数](https://leetcode-cn.com/problems/number-of-1-bits/) |
+| 1      |              |                    | [231. 2的幂](https://leetcode-cn.com/problems/power-of-two/) |
+| 1      | 1            |                    | [190. 颠倒二进制位](https://leetcode-cn.com/problems/reverse-bits/) |
+| 1      | 1            | 用位运算           | [52. N皇后 II](https://leetcode-cn.com/problems/n-queens-ii/) |
+| 1      | 1            |                    | [\*338. 比特位计数](https://leetcode-cn.com/problems/counting-bits/) |
 
-课后作业
-
-| 敲代码 | 阅读别人代码 | 备注 | 题目 |
-| ------ | ------------ | ---- | ---- |
-|        |              |      |      |
+课后作业，这周作业全在课内实战里面了。
