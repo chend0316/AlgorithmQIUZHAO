@@ -4,6 +4,9 @@
 
 并查集元素的 key 是整数，且从 0 开始，这样就能作为下标了。疑问：要是 key 不是简单的整数该怎么办？
 
+## A* 搜索
+估价函数到底怎么选啊？
+
 ## 自己整理的双向BFS模板
 
 ```python
@@ -24,11 +27,6 @@ def debfs(start, end):
     if len(s1) > len(s2): s1, s2 = s2, s1
   return 0  # 根据题目 0 or -1
 ```
-
-## “单词搜索 II”用 Tire 树实现的时间复杂度
-
-## 常用位运算 (背)
-- `x = x & (x - 1)` 清零最低位的1
 
 ## 每周课内遍数记录
 
@@ -194,13 +192,13 @@ def debfs(start, end):
 | 1      |              |                    | [130. 被围绕的区域](https://leetcode-cn.com/problems/surrounded-regions/) |
 | 重复   |              |                    | 70. 爬楼梯                                                   |
 | 重复   |              |                    | 22. 括号生成                                                 |
-|        |              | 用位运算           | [51. N皇后](https://leetcode-cn.com/problems/n-queens/)      |
+|        |              | 要用位运算？       | [51. N皇后](https://leetcode-cn.com/problems/n-queens/)      |
 | 1      | 1            |                    | [36. 有效的数独](https://leetcode-cn.com/problems/valid-sudoku/) |
 | 1      | 1            | 重点复习           | [37. 解数独](https://leetcode-cn.com/problems/sudoku-solver/) |
 | 重复   |              |                    | 127. 单词接龙                                                |
 | 1      |              |                    | [433. 最小基因变化](https://leetcode-cn.com/problems/minimum-genetic-mutation/) |
-|        |              |                    | [1091. 二进制矩阵中的最短路径](https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/) |
-|        |              |                    | [773. 滑动谜题](https://leetcode-cn.com/problems/sliding-puzzle/) |
+| 3      | 3            | A*                 | [1091. 二进制矩阵中的最短路径](https://leetcode-cn.com/problems/shortest-path-in-binary-matrix/) |
+| 2      | 1            | A*                 | [773. 滑动谜题](https://leetcode-cn.com/problems/sliding-puzzle/) |
 | 1      | 1            |                    | [191. 位1的个数](https://leetcode-cn.com/problems/number-of-1-bits/) |
 | 1      |              |                    | [231. 2的幂](https://leetcode-cn.com/problems/power-of-two/) |
 | 1      | 1            |                    | [190. 颠倒二进制位](https://leetcode-cn.com/problems/reverse-bits/) |
