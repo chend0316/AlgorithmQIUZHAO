@@ -194,10 +194,10 @@
 | 1      |              |      | [680. 验证回文字符串 Ⅱ](https://leetcode-cn.com/problems/valid-palindrome-ii/) |
 |        |              |      | [146. LRU缓存机制](https://leetcode-cn.com/problems/lru-cache/) |
 | 1      |              |      | [56. 合并区间](https://leetcode-cn.com/problems/merge-intervals/) |
-|        |              |      | [300. 最长上升子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/) |
+| 1      | 1            |      | [300. 最长上升子序列](https://leetcode-cn.com/problems/longest-increasing-subsequence/) |
 | 1      |              |      | [91. 解码方法](https://leetcode-cn.com/problems/decode-ways/) |
 | 1      |              |      | [8. 字符串转换整数 (atoi)](https://leetcode-cn.com/problems/string-to-integer-atoi/) |
-|        |              |      | [438. 找到字符串中所有字母异位词](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/) |
+| 1      |              |      | [438. 找到字符串中所有字母异位词](https://leetcode-cn.com/problems/find-all-anagrams-in-a-string/) |
 |        |              |      | [5. 最长回文子串](https://leetcode-cn.com/problems/longest-palindromic-substring/) |
 |        |              |      | [493. 翻转对](https://leetcode-cn.com/problems/reverse-pairs/) |
 |        |              |      | [32. 最长有效括号](https://leetcode-cn.com/problems/longest-valid-parentheses/) |
